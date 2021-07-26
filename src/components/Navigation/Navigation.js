@@ -1,30 +1,18 @@
-import { Switch, Route } from "react-router-dom";
-import Container from "../Container/Container";
-import AppBar from "../AppBar/AppBar";
-import HomePage from "../../views/HomePage/HomePage";
-import MoviesPage from "../../views/MoviesPage/MoviesPage";
-import MovieDetailsPage from "../../views/MovieDetailsPage/MovieDetailsPage";
+import { NavLink } from "react-router-dom";
+import s from "./Navigation.module.scss";
 
-function App() {
-  return (
-    <Container>
-      <AppBar />
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/movies" exact>
-          <MoviesPage />
-        </Route>
-        <Route path="/movies/:movieId">
-          <MovieDetailsPage />
-        </Route>
-      </Switch>
-    </Container>
-  );
-}
+const Navigation = () => (
+  <nav>
+    <NavLink exact to="/" className={s.link} activeClassName={s.activeLink}>
+      Home
+    </NavLink>
+    <NavLink to="/movies" className={s.link} activeClassName={s.activeLink}>
+      Movies
+    </NavLink>
+  </nav>
+);
 
-export default App;
+export default Navigation;
 
 // В приложении должны быть следующие маршруты. Если пользователь зашел по несуществующему маршруту, его необходимо перенаправлять на домашнюю страницу.
 

@@ -1,19 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { useRouteMatch } from "react-router-dom";
 import MoviesGallery from "../../components/MoviesGallery/MoviesGallery";
 import * as moviesApi from "../../services/movies-api";
-// import s from "./HomePage.module.scss";
+import Loader from "../../components/Loader/Loader";
+
+const Status = {
+  IDLE: "idle",
+  PENDING: "pending",
+  RESOLVED: "resolved",
+  REJECTED: "rejected",
+};
 
 function HomePage() {
-  const match = useRouteMatch();
   const [movies, setMovies] = useState([]);
-  console.log(match);
+  const [status, setStatus] = useState(Status.IDLE);
 
   useEffect(() => {
-    moviesApi.fetchMovies().then((results) => setMovies(results));
+    setStatus(Status.PENDING);
+    moviesApi
+      .fetchMovies()
+      .then((results) => {
+        setMovies(results);
+        setStatus(Status.RESOLVED);
+      })
+      .catch((error) => {
+        setStatus(Status.REJECTED);
+        console.log(error);
+      });
   }, []);
   console.log(movies);
-  return <>{movies && <MoviesGallery movies={movies}></MoviesGallery>}</>;
+
+  if (status === Status.IDLE) {
+    return <></>;
+  }
+  if (status === Status.PENDING) {
+    return <Loader />;
+  }
+  if (status === Status.RESOLVED) {
+    return <MoviesGallery movies={movies}></MoviesGallery>;
+  }
+  if (status === Status.REJECTED) {
+    return <p>something wrong</p>;
+  }
 }
 
 export default HomePage;

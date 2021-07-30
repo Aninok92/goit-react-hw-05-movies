@@ -1,7 +1,6 @@
 import s from "./Cast.module.scss";
 
 function Cast({ movie }) {
-  console.log(movie.reviews.results);
   return (
     <ul className={s.castGallery}>
       {movie.credits.cast.map((cast) => (
@@ -10,8 +9,14 @@ function Cast({ movie }) {
             src={`https://image.tmdb.org/t/p/w200/${cast.profile_path}`}
             alt={cast.name}
           />
-          <p>Name:{cast.name}</p>
-          <p>Character: {cast.character}</p>
+          <p className={s.info}>
+            <span className={s.infoSubtitle}>Name:</span>
+            {cast.name}
+          </p>
+          <p className={s.info}>
+            <span className={s.infoSubtitle}>Character:</span>
+            {cast.character}
+          </p>
         </li>
       ))}
     </ul>

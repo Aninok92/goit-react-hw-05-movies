@@ -1,3 +1,4 @@
+import defaultImage from "../../images/no-image.png";
 import s from "./Cast.module.scss";
 
 function Cast({ movie }) {
@@ -6,7 +7,11 @@ function Cast({ movie }) {
       {movie.credits.cast.map((cast) => (
         <li key={cast.id} className={s.castGalleryItem}>
           <img
-            src={`https://image.tmdb.org/t/p/w200/${cast.profile_path}`}
+            src={
+              cast.profile_path
+                ? `https://image.tmdb.org/t/p/w200/${cast.profile_path}`
+                : defaultImage
+            }
             alt={cast.name}
           />
           <p className={s.info}>

@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
+import defaultImage from "../../images/no-image.png";
 import s from "./MoviesGallery.module.scss";
 
 function MoviesGallery({ movies }) {
+  console.log(movies);
   return (
     <ul className={s.moviesGallery}>
       {movies.map((movie) => (
@@ -12,8 +14,13 @@ function MoviesGallery({ movies }) {
             activeClassName={s.activeLink}
           >
             <img
-              src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`}
+              src={
+                movie.backdrop_path
+                  ? `https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`
+                  : defaultImage
+              }
               alt={movie.title}
+              className={s.img}
             />
             <h3>{movie.title ?? "no title"}</h3>
           </NavLink>

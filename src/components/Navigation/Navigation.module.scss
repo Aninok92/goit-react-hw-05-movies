@@ -5,6 +5,9 @@
   font-weight: 500;
   color: #263859;
   font-size: 18px;
+  &:hover {
+    color: #ff6768;
+  }
 }
 
 .activeLink {

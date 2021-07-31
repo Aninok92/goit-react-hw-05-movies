@@ -12,7 +12,6 @@ const Status = {
 };
 
 function MoviesPage() {
-  // const { url } = useRouteMatch();
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
@@ -35,8 +34,6 @@ function MoviesPage() {
         console.log(error);
       });
   }, [query]);
-
-  console.log(query);
 
   return (
     <>

@@ -1,35 +1,44 @@
+import { Toaster } from "react-hot-toast";
+import { lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import Container from "../Container/Container";
 import AppBar from "../AppBar/AppBar";
-import HomePage from "../../views/HomePage/HomePage";
-import MoviesPage from "../../views/MoviesPage/MoviesPage";
-import MovieDetailsPage from "../../views/MovieDetailsPage/MovieDetailsPage";
+import Loader from "../Loader/Loader";
+
+const HomePage = lazy(() =>
+  import("../../views/HomePage/HomePage" /* webpackChunkName: "HomePage" */)
+);
+const MoviesPage = lazy(() =>
+  import(
+    "../../views/MoviesPage/MoviesPage" /* webpackChunkName: "MoviesPage" */
+  )
+);
+const MovieDetailsPage = lazy(() =>
+  import(
+    "../../views/MovieDetailsPage/MovieDetailsPage" /* webpackChunkName: "MovieDetailsPage" */
+  )
+);
 
 function App() {
   return (
     <Container>
       <AppBar />
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/movies" exact>
-          <MoviesPage />
-        </Route>
-        <Route path="/movies/:movieId">
-          <MovieDetailsPage />
-        </Route>
-      </Switch>
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/movies" exact>
+            <MoviesPage />
+          </Route>
+          <Route path="/movies/:movieId">
+            <MovieDetailsPage />
+          </Route>
+        </Switch>
+      </Suspense>
+      <Toaster position="top-right" />
     </Container>
   );
 }
 
 export default App;
-
-// В приложении должны быть следующие маршруты. Если пользователь зашел по несуществующему маршруту, его необходимо перенаправлять на домашнюю страницу.
-
-// '/' - компонент <HomePage>, домашняя страница со списком популярных кинофильмов.
-// '/movies' - компонент <MoviesPage>, страница поиска фильмов по ключевому слову.
-// '/movies/:movieId' - компонент <MovieDetailsPage>, страница с детальной информацией о кинофильме.
-// /movies/:movieId/cast - компонент <Cast>, информация о актерском составе. Рендерится на странице <MovieDetailsPage>.
-// /movies/:movieId/reviews - компонент <Reviews>, информация об обзорах. Рендерится на странице <MovieDetailsPage>.

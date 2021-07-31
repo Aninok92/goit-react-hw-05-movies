@@ -42,8 +42,6 @@ function MovieDetailsPage() {
       });
   }, [movieId]);
 
-  console.log(movie);
-
   return (
     <>
       {status === Status.IDLE && <></>}

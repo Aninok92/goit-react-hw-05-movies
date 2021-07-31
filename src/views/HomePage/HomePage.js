@@ -27,7 +27,6 @@ function HomePage() {
         console.log(error);
       });
   }, []);
-  console.log(movies);
 
   if (status === Status.IDLE) {
     return <></>;

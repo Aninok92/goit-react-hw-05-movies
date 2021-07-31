@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import s from "./Reviews.module.scss";
 
 function Reviews({ movie }) {
@@ -21,5 +22,20 @@ function Reviews({ movie }) {
     </>
   );
 }
+
+Reviews.defaultProps = {
+  author: null,
+  content: null,
+};
+
+Reviews.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      author: PropTypes.string,
+      content: PropTypes.string,
+    })
+  ),
+};
 
 export default Reviews;

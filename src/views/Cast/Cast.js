@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import defaultImage from "../../images/no-image.png";
 import s from "./Cast.module.scss";
 
@@ -27,5 +28,20 @@ function Cast({ movie }) {
     </ul>
   );
 }
+
+Cast.defaultProps = {
+  profile_path: null,
+};
+
+Cast.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      profile_path: PropTypes.string,
+      name: PropTypes.string.isRequired,
+      character: PropTypes.string.isRequired,
+    })
+  ),
+};
 
 export default Cast;

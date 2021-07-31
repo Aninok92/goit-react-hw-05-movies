@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import s from "./SearchForm.module.scss";
 
 function SearchForm({ onSubmit }) {
@@ -31,5 +32,13 @@ function SearchForm({ onSubmit }) {
     </form>
   );
 }
+
+SearchForm.defaultProps = {
+  onSubmit: () => null,
+};
+
+SearchForm.propType = {
+  onSubmit: PropTypes.func,
+};
 
 export default SearchForm;

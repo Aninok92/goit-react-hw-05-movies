@@ -3,7 +3,7 @@ import Navigation from "../Navigation/Navigation";
 function AppBar() {
   return (
     <header>
-      <Navigation></Navigation>
+      <Navigation />
     </header>
   );
 }

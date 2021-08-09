@@ -35,7 +35,7 @@ function HomePage() {
     return <Loader />;
   }
   if (status === Status.RESOLVED) {
-    return <MoviesGallery movies={movies}></MoviesGallery>;
+    return <MoviesGallery movies={movies} />;
   }
   if (status === Status.REJECTED) {
     return <p>something wrong</p>;

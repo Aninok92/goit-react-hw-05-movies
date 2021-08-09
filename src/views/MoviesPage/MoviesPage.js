@@ -37,12 +37,10 @@ function MoviesPage() {
 
   return (
     <>
-      <SearchForm onSubmit={setQuery}></SearchForm>
+      <SearchForm onSubmit={setQuery} />
       {status === Status.IDLE && <></>}
       {status === Status.PENDING && <Loader />}
-      {status === Status.RESOLVED && (
-        <MoviesGallery movies={movies}></MoviesGallery>
-      )}
+      {status === Status.RESOLVED && <MoviesGallery movies={movies} />}
       {status === Status.REJECTED && <p>something wrong</p>}
     </>
   );

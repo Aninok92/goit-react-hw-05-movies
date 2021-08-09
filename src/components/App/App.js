@@ -1,6 +1,6 @@
 import { Toaster } from "react-hot-toast";
 import { lazy, Suspense } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Container from "../Container/Container";
 import AppBar from "../AppBar/AppBar";
 import Loader from "../Loader/Loader";
@@ -34,6 +34,7 @@ function App() {
           <Route path="/movies/:movieId">
             <MovieDetailsPage />
           </Route>
+          <Redirect to="/" />
         </Switch>
       </Suspense>
       <Toaster position="top-right" />
